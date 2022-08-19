@@ -1,0 +1,30 @@
+<dx-toolbar
+  [disabled]="disabled"
+  [style.marginTop.px]="marginTop"
+  [style.marginRight.px]="marginRight"
+  [style.marginBottom.px]="marginBottom"
+  [style.marginLeft.px]="marginLeft"
+  [style.paddingTop.px]="paddingTop"
+  [style.paddingRight.px]="paddingRight"
+  [style.paddingBottom.px]="paddingBottom"
+  [style.paddingLeft.px]="paddingLeft"
+  [style.borderTopLeftRadious.px]="borderTopRadiusCorners"
+  [style.borderTopRightRadious.px]="borderTopRadiusCorners"
+  [style.borderBottomLeftRadious.px]="borderBottomRadiusCorners"
+  [style.borderBottomRightRadious.px]="borderBottomRadiusCorners"
+  [style.borderBottomRightRadious.px]="borderBottomRadiusCorners"
+  class="toolbar"
+>
+  <dxi-item
+    *ngFor="let toolbarItem of toolbarItems"
+    [location]="toolbarItem.location"
+    [locateInMenu]="toolbarItem.locateInMenu"
+    [widget]="toolbarItem.widget"
+    [options]="toolbarItem.options"
+    [disabled]="toolbarItem.disabled"
+    [visible]="toolbarItem.visible"
+    [template]="toolbarItem.template"
+    cssClass="toolbar-button"
+  >
+  </dxi-item>
+</dx-toolbar>
