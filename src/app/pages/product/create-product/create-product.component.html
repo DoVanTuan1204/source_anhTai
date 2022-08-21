@@ -1,1 +1,43 @@
-<h2>heheheheh</h2>
+<h2 class="content-block">Create Customer</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)">
+    <dx-form [formData]="formData">
+      <dxi-item  editorType="dxTextBox" dataField="project_code"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer code', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer code is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="project_name"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer name', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer code is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    
+    <dxi-item
+    dataField="customer_code"
+    editorType="dxSelectBox"
+    [editorOptions]="{ items: Customer_code, value: '' }"
+  ></dxi-item>
+  <dxi-item  dataField="from_date"
+      [editorOptions]="{ stylingMode: 'filled', mode: 'date' }">
+    
+     
+    </dxi-item> 
+    <dxi-item  dataField="to_date"
+    [editorOptions]="{ stylingMode: 'filled', mode: 'date' }">
+   
+  </dxi-item> 
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Customer'">
+      </dxo-button-options>
+    </dxi-item>
+
+    </dx-form>
+  </form>  
+  </div>
+</div>
+<hr>

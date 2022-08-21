@@ -3,6 +3,7 @@ import { DxDataGridModule } from "devextreme-angular";
 import { CustomerService } from "../customer.service";
 import { RequestService } from "src/app/shared/services/request.service";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
+import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
 
 @Component({
   selector: "app-create-customer",
@@ -12,7 +13,8 @@ import { LocalStoreService } from "src/app/shared/services/local-store.service";
 export class CreateCustomerComponent implements OnInit {
   constructor(
     private _getCustomer: CustomerService,
-    public _ls: LocalStoreService
+    public _ls: LocalStoreService,
+    private _notiSwal: NotificationSwalService
   ) {}
 
   ngOnInit(): void {}
@@ -36,14 +38,25 @@ export class CreateCustomerComponent implements OnInit {
 
     this._getCustomer.createCustomer(params).then((res: any) => {
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
+        this._notiSwal.notificationSwalToast(
+          "Create Customer Success",
+          "",
+          "success"
+        );
         this._ls.setLocalItem("customer_code", customer_code);
         this._ls.setLocalItem("customer_name", customer_name);
         this._ls.setLocalItem("address", address);
         this._ls.setLocalItem("contact_no", contact_no);
+        this.formData = "";
+      } else {
+        this._notiSwal.notificationSwal(
+          "Login",
+          "Incorrect User or Password",
+          "error"
+        );
       }
     });
 
     console.log(params);
-    console.log("Local Key bearer", this._ls.LOCAL_STORAGE_KEY);
   }
 }
