@@ -16,7 +16,7 @@ export class PaymentListComponent implements OnInit {
         console.log(this.itemExpense);
       });
 
-      this.dataExpense = res_expense;
+      this.dataExpense = res_expense.data;
     });
   }
 }

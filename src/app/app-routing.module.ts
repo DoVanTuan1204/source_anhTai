@@ -66,6 +66,14 @@ export const routes: Routes = [
           import("./pages/payment/payment.module").then((m) => m.PaymentModule),
         data: { title: "Payment", breadcrumb: "Payment" },
       },
+      {
+        path: "createCost",
+        loadChildren: () =>
+          import("./pages/payment/create-payment/create-payment.module").then(
+            (m) => m.CreatePaymentModule
+          ),
+        data: { title: "createPayment", breadcrumb: "createPayment  " },
+      },
     ],
   },
   {

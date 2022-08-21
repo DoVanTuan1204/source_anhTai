@@ -40,8 +40,17 @@ export const navigation = [
         path: "/Store",
       },
       {
-        text: "Payment",
-        path: "/Payment",
+        text: "Cost",
+        items: [
+          {
+            text: "Cost list",
+            path: "/Payment",
+          },
+          {
+            text: "Create Cost list",
+            path: "/createCost",
+          },
+        ],
       },
     ],
   },

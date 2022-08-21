@@ -1,0 +1,42 @@
+<h2 class="content-block">Create Customer</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)">
+    <dx-form [formData]="formData">
+        
+    <dxi-item
+    dataField="customer_code"
+    editorType="dxSelectBox"
+    [editorOptions]="{ items: Customer_Code, value: '' }"
+  ></dxi-item>
+  
+  <dxi-item
+  dataField="project_code"
+  editorType="dxSelectBox"
+  [editorOptions]="{ items: Project_Code, value: '' }"
+></dxi-item>
+
+      <dxi-item  editorType="dxTextBox" dataField="reason"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'reason', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Reason is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="cost"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Cost', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Cost is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Cost'">
+      </dxo-button-options>
+    </dxi-item>
+
+    </dx-form>
+  </form>  
+  </div>
+</div>
+<hr>
