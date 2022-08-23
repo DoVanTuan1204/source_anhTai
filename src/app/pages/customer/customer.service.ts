@@ -17,4 +17,9 @@ export class CustomerService {
       this._reqService.createRecord(this.path_Customer, params)
     );
   }
+  deleteCustomer(id: Parameter[]): Promise<any> {
+    return firstValueFrom(
+      this._reqService.deleteRecord(this.path_Customer, id)
+    );
+  }
 }

@@ -23,7 +23,7 @@ export const navigation = [
         ],
       },
       {
-        text: "Product",
+        text: "Project",
         items: [
           {
             text: "Project list",
@@ -40,14 +40,14 @@ export const navigation = [
         path: "/Store",
       },
       {
-        text: "Cost",
+        text: "Expense",
         items: [
           {
-            text: "Cost list",
+            text: "Expenselist",
             path: "/Payment",
           },
           {
-            text: "Create Cost list",
+            text: "Create Expense list",
             path: "/createCost",
           },
         ],

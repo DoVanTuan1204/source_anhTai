@@ -61,8 +61,15 @@ export class CreateProductComponent implements OnInit {
         this._ls.setLocalItem("project_name", project_name);
         this._ls.setLocalItem("from_date", from_date);
         this._ls.setLocalItem("to_date", to_date);
+        this.formData = {
+          project_code: "",
+          project_name: "",
+          customer_code: "",
+          from_date: "",
+          to_date: "",
+        };
       } else {
-        this._notiSwal.notificationSwal(
+        this._notiSwal.notificationSwalToast(
           "Login",
           "Incorrect User or Password",
           "error"

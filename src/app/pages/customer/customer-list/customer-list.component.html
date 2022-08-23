@@ -1,41 +1,97 @@
-<h2 class="content-block">Customer List</h2>
+<!-- <h2 class="content-block">Customer List</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
            
 
-<dx-data-grid
-
+<dx-data-grid #dataGrid
+id="dataGrid"
 [dataSource]="DataCustomer"
-keyExpr="_id"
-[showBorders]="true"
-[allowColumnResizing]="true"
-[focusedRowEnabled]="true">
+
+(onSelectionChanged)="selectionChanged($event)">
 <dxo-editing
-[allowDeleting]="true"
-[confirmDelete]="true"
+mode="row"
 [selectTextOnEditStart]="true"
 [useIcons]="true"
-editmode="batch"
 >
 </dxo-editing>
+<dxo-selection mode="multiple"></dxo-selection>
 <dxo-header-filter [visible]="true"> </dxo-header-filter>
 
   <dxo-filter-panel [visible]="true"> </dxo-filter-panel>
 
   <dxo-filter-row [visible]="true"> </dxo-filter-row>
 
-  <dxo-paging [pageSize]="10"> </dxo-paging>
+  <dxo-paging [pageSize]="10"></dxo-paging>
   <dxo-pager
   [allowedPageSizes]="[5, 10]"
   [showPageSizeSelector]="true"
   [showNavigationButtons]="true"
->
-</dxo-pager>
-
-
+></dxo-pager>
+<dxo-toolbar>
+  <dxi-item location="after">
+    <dx-button
+      (onClick)="deleteRecords()"
+      [disabled]="!selectedItemKeys.length"
+      icon="trash"
+      text="Delete Selected Records"
+    >
+    </dx-button>
+  </dxi-item>
+</dxo-toolbar>
 </dx-data-grid>
 
   </div>
 </div>
-<hr>
-<p>grid-data works!{{item}}</p>
+<hr> -->
+<h2 class="content-block">Customer List</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    
+  <dx-data-grid  #dataGridVar
+   
+    [dataSource]="DataCustomer"
+    [showBorders]="true"
+    (onSelectionChanged)="selectionChanged($event)"
+  >
+  <dxo-header-filter [visible]="true"> </dxo-header-filter>
+
+  <dxo-filter-panel [visible]="true"> </dxo-filter-panel>
+
+  <dxo-filter-row [visible]="true"> </dxo-filter-row>
+  <dxo-paging [pageSize]="5"></dxo-paging>
+  <dxo-pager
+  [allowedPageSizes]="[5, 10]"
+  [showPageSizeSelector]="true"
+  [showNavigationButtons]="true"
+></dxo-pager>
+
+    <dxo-selection mode="multiple"></dxo-selection>
+
+    <!-- <dxi-column dataField="_id" caption="ID"></dxi-column> -->
+    <dxi-column dataField="customer_code" caption="Customer code"></dxi-column>
+    <dxi-column dataField="customer_name"  caption="Customer name" ></dxi-column>
+    <dxi-column dataField="contact_no"  caption="Customer contact" ></dxi-column>
+    <dxi-column dataField="address"  caption="Customer address" ></dxi-column>
+    <dxi-column dataField="created_date" dataType="datetime"  caption="created date"  ></dxi-column>
+    <dxi-column dataField="updated_date" dataType="datetime"  caption="updated date"></dxi-column>
+    
+
+    <dxo-toolbar>
+      <dxi-item name="addRowButton" showText="always"> </dxi-item>
+      <dxi-item location="after">
+        <dx-button
+          (onClick)="deleteRecords()"
+          [disabled]="!selectedItemKeys.length"
+          icon="trash"
+          text="Delete Selected Records"
+        >
+        </dx-button>
+      </dxi-item>
+    </dxo-toolbar>
+  </dx-data-grid>
+
+</div>
+</div>
+
+
+

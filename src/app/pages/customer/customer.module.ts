@@ -4,7 +4,11 @@ import { CommonModule } from "@angular/common";
 import { CustomerRoutingModule } from "./customer-routing.module";
 import { CustomerListComponent } from "./customer-list/customer-list.component";
 import { CreateCustomerComponent } from "./create-customer/create-customer.component";
-import { DxDataGridModule, DxFormModule } from "devextreme-angular";
+import {
+  DxDataGridModule,
+  DxFormModule,
+  DxButtonModule,
+} from "devextreme-angular";
 
 @NgModule({
   declarations: [CustomerListComponent],
@@ -13,6 +17,7 @@ import { DxDataGridModule, DxFormModule } from "devextreme-angular";
     CustomerRoutingModule,
     DxDataGridModule,
     DxFormModule,
+    DxButtonModule,
   ],
 })
 export class CustomerModule {}

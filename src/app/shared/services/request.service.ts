@@ -48,8 +48,8 @@ export class RequestService {
     return this._http.put<any>(API_URl, tentIty);
   }
 
-  deleteRecord(path: string): Observable<any> {
-    const API_URl = AppConfig.settings.API_URl + path;
+  deleteRecord(path: string, id?: any): Observable<any> {
+    const API_URl = AppConfig.settings.API_URl + path + "/" + id;
     return this._http.delete(API_URl);
   }
 

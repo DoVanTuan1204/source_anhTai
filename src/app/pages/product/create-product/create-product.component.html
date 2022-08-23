@@ -1,4 +1,4 @@
-<h2 class="content-block">Create Customer</h2>
+<h2 class="content-block">Create Project</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
     
@@ -7,13 +7,13 @@
     <form action="post" (submit)="onSubmit($event)">
     <dx-form [formData]="formData">
       <dxi-item  editorType="dxTextBox" dataField="project_code"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer code', mode: 'text' }">
-      <dxi-validation-rule type="required" message="Customer code is required"></dxi-validation-rule>
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Project code', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Project code is required"></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item> 
     <dxi-item  editorType="dxTextBox" dataField="project_name"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer name', mode: 'text' }">
-      <dxi-validation-rule type="required" message="Customer code is required"></dxi-validation-rule>
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Project name', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Project name is required"></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item> 
     

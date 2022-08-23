@@ -17,4 +17,7 @@ export class PaymentService {
       this._reqService.createRecord(this.path_Expense, params)
     );
   }
+  deletePayment(id: Parameter[]): Promise<any> {
+    return firstValueFrom(this._reqService.deleteRecord(this.path_Expense, id));
+  }
 }

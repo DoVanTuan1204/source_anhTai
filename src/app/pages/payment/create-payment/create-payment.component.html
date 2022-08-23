@@ -1,4 +1,4 @@
-<h2 class="content-block">Create Customer</h2>
+<h2 class="content-block">Create Expense</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
     
@@ -24,8 +24,8 @@
       <dxi-validation-rule type="required" message="Reason is required"></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item> 
-    <dxi-item  editorType="dxTextBox" dataField="cost"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Cost', mode: 'text' }">
+    <dxi-item  editorType="dxTextBox" dataField="amount"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Amount', mode: 'number' }">
       <dxi-validation-rule type="required" message="Cost is required"></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item> 

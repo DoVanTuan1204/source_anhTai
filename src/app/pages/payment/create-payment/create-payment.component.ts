@@ -34,6 +34,7 @@ export class CreatePaymentComponent implements OnInit {
       });
     });
     console.log(this.Customer_Code);
+
     console.log(this.Project_Code);
   }
 
@@ -42,17 +43,18 @@ export class CreatePaymentComponent implements OnInit {
     project_code: "",
     customer_code: "",
     reason: "",
-    cost: "",
+    amount: "",
   };
   onSubmit(e) {
     e.preventDefault();
-    const { project_code, customer_code, reason, cost } = this.formData;
+    const { project_code, customer_code, reason, amount } = this.formData;
     let params: any = {
       customer_code,
       project_code,
       reason,
-      cost,
+      amount,
     };
+    //let a = <number>1234;
     this._createPayment.createPayment(params).then((res: any) => {
       console.log("payment", params);
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
@@ -64,7 +66,13 @@ export class CreatePaymentComponent implements OnInit {
         this._ls.setLocalItem("project_code", project_code);
         this._ls.setLocalItem("customer_code", customer_code);
         this._ls.setLocalItem("reason", reason);
-        this._ls.setLocalItem("cost", cost);
+        this._ls.setLocalItem("amount", amount);
+        this.formData = {
+          customer_code: "",
+          project_code: "",
+          reason: "",
+          amount: 0,
+        };
       } else {
         this._notiSwal.notificationSwalToast(
           "Login",

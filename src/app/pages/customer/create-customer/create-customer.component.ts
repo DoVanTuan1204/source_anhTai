@@ -47,7 +47,12 @@ export class CreateCustomerComponent implements OnInit {
         this._ls.setLocalItem("customer_name", customer_name);
         this._ls.setLocalItem("address", address);
         this._ls.setLocalItem("contact_no", contact_no);
-        this.formData = "";
+        this.formData = {
+          customer_code: "",
+          customer_name: "",
+          address: "",
+          contact_no: "",
+        };
       } else {
         this._notiSwal.notificationSwal(
           "Login",

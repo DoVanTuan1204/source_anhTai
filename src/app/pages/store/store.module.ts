@@ -1,17 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { StoreRoutingModule } from './store-routing.module';
-import { StoreListComponent } from './store-list/store-list.component';
-
+import { StoreRoutingModule } from "./store-routing.module";
+import { StoreListComponent } from "./store-list/store-list.component";
+import { DxButtonModule, DxDataGridModule } from "devextreme-angular";
 
 @NgModule({
-  declarations: [
-    StoreListComponent
-  ],
-  imports: [
-    CommonModule,
-    StoreRoutingModule
-  ]
+  declarations: [StoreListComponent],
+  imports: [CommonModule, StoreRoutingModule, DxDataGridModule, DxButtonModule],
 })
-export class StoreModule { }
+export class StoreModule {}

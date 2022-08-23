@@ -17,4 +17,7 @@ export class ProudctService {
       this._reqService.createRecord(this.path_project, params)
     );
   }
+  deleteProject(id: Parameter[]): Promise<any> {
+    return firstValueFrom(this._reqService.deleteRecord(this.path_project, id));
+  }
 }
