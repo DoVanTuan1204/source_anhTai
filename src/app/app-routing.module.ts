@@ -61,6 +61,14 @@ export const routes: Routes = [
         data: { title: "Store", breadcrumb: "Store" },
       },
       {
+        path: "createUser",
+        loadChildren: () =>
+          import("./pages/store/create-user/create-user.module").then(
+            (m) => m.CreateUserModule
+          ),
+        data: { title: "CreateUser", breadcrumb: "CreateUser" },
+      },
+      {
         path: "Payment",
         loadChildren: () =>
           import("./pages/payment/payment.module").then((m) => m.PaymentModule),

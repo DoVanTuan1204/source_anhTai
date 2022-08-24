@@ -27,7 +27,7 @@ export class StoreListComponent implements OnInit {
   }
   deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
-      this._getUser.deleteUser(key._id);
+      this._getUser.deleteUser(key.email);
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
         this._notiSwal.notificationSwalToast(
           "Delete Customer Success",

@@ -33,9 +33,6 @@ export class CreatePaymentComponent implements OnInit {
         this.Project_Code.push(b);
       });
     });
-    console.log(this.Customer_Code);
-
-    console.log(this.Project_Code);
   }
 
   //create cost
@@ -52,7 +49,7 @@ export class CreatePaymentComponent implements OnInit {
       customer_code,
       project_code,
       reason,
-      amount,
+      amount: parseFloat(amount),
     };
     //let a = <number>1234;
     this._createPayment.createPayment(params).then((res: any) => {

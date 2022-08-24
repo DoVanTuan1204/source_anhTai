@@ -16,30 +16,34 @@ export class PaymentListComponent implements OnInit {
   public dataExpense: any;
   public itemExpense: any;
   selectedItemKeys: any[] = [];
-  ngOnInit(): void {
+  fetchData() {
     this._getExpense.getExpense().then((res_expense) => {
       res_expense.data.forEach((item) => {
         this.itemExpense = item;
-        console.log(this.itemExpense);
       });
-
       this.dataExpense = res_expense.data;
     });
+    console.log(this.dataExpense);
+  }
+  ngOnInit(): void {
+    this.fetchData();
   }
   selectionChanged(data: any) {
     this.selectedItemKeys = data.selectedRowKeys;
   }
-  deleteRecords() {
+  async deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
       this._getExpense.deletePayment(key._id);
-
-      if (this._ls.LOCAL_STORAGE_KEY !== "") {
-        this._notiSwal.notificationSwalToast(
-          "Delete Customer Success",
-          "",
-          "success"
-        );
-      }
     });
+    this.fetchData();
+    this.fetchData();
+
+    if (this._ls.LOCAL_STORAGE_KEY !== "") {
+      this._notiSwal.notificationSwalToast(
+        "Delete Customer Success",
+        "",
+        "success"
+      );
+    }
   }
 }

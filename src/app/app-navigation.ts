@@ -36,8 +36,17 @@ export const navigation = [
         ],
       },
       {
-        text: "Store",
-        path: "/Store",
+        text: "User",
+        items: [
+          {
+            text: "User list",
+            path: "/Store",
+          },
+          {
+            text: "Create User",
+            path: "/createUser",
+          },
+        ],
       },
       {
         text: "Expense",

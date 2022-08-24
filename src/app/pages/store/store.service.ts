@@ -14,4 +14,9 @@ export class StoreService {
   deleteUser(id: Parameter[]): Promise<any> {
     return firstValueFrom(this._reqService.deleteRecord(this.path_User, id));
   }
+  createUser(params: Parameter[]): Promise<any> {
+    return firstValueFrom(
+      this._reqService.createRecord(this.path_User, params)
+    );
+  }
 }
