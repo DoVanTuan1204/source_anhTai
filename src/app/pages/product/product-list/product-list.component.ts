@@ -23,10 +23,8 @@ export class ProductListComponent implements OnInit {
     this._getProJect.getProJect().then((res: any) => {
       res.data.forEach((item) => {
         this.id_Project = item._id;
-        console.log(this.id_Project);
       });
       this.dataProject = res.data;
-      console.log("aâ", this.dataProject);
     });
   }
   selectionChanged(data: any) {
@@ -34,10 +32,12 @@ export class ProductListComponent implements OnInit {
   }
   deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
-      this._getProJect.deleteProject(key._id);
+      this._getProJect.deleteProject(key._id).then((res: any) => {
+        this.ngOnInit();
+      });
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
         this._notiSwal.notificationSwalToast(
-          "Delete Customer Success",
+          "Delete Project Success",
           "",
           "success"
         );

@@ -19,7 +19,6 @@ export class StoreListComponent implements OnInit {
   ngOnInit(): void {
     this._getUser.getUser().then((res_user: any) => {
       this.dataUser = res_user.data;
-      console.log("aaaaa", this.dataUser);
     });
   }
   selectionChanged(data: any) {
@@ -27,10 +26,12 @@ export class StoreListComponent implements OnInit {
   }
   deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
-      this._getUser.deleteUser(key.email);
+      this._getUser.deleteUser(key.email).then((res: any) => {
+        this.ngOnInit();
+      });
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
         this._notiSwal.notificationSwalToast(
-          "Delete Customer Success",
+          "Delete User Success",
           "",
           "success"
         );

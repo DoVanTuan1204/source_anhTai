@@ -45,7 +45,9 @@ export class CustomerListComponent implements OnInit {
   }
   deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
-      this._getCustomer.deleteCustomer(key._id);
+      this._getCustomer.deleteCustomer(key._id).then((res: any) => {
+        this.ngOnInit();
+      });
       this.dataGrid.instance.refresh(this.DataCustomer);
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
         this._notiSwal.notificationSwalToast(

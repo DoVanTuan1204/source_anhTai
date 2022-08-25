@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
 import { PaymentService } from "../payment.service";
+
 @Component({
   selector: "app-payment-list",
   templateUrl: "./payment-list.component.html",
@@ -23,7 +24,6 @@ export class PaymentListComponent implements OnInit {
       });
       this.dataExpense = res_expense.data;
     });
-    console.log(this.dataExpense);
   }
   ngOnInit(): void {
     this.fetchData();
@@ -33,14 +33,16 @@ export class PaymentListComponent implements OnInit {
   }
   async deleteRecords() {
     this.selectedItemKeys.forEach((key) => {
-      this._getExpense.deletePayment(key._id);
+      this._getExpense.deletePayment(key._id).then((res: any) => {
+        this.ngOnInit();
+      });
     });
-    this.fetchData();
-    this.fetchData();
+
+    //this.ngOnInit();
 
     if (this._ls.LOCAL_STORAGE_KEY !== "") {
       this._notiSwal.notificationSwalToast(
-        "Delete Customer Success",
+        "Delete Expense Success",
         "",
         "success"
       );
