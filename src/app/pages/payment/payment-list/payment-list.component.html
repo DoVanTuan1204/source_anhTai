@@ -31,6 +31,14 @@
     
 
     <dxo-toolbar>
+      <dxi-item location="after"> 
+       
+        <dx-button
+        icon="add"
+    text="Create Expense"
+    (onClick)="togglePopup()">
+</dx-button>
+      </dxi-item>
       <dxi-item name="addRowButton" showText="always"> </dxi-item>
       <dxi-item location="after">
         <dx-button
@@ -46,4 +54,57 @@
 
   </div>
 </div>
+
+<dx-popup 
+  [showTitle]="true"
+  title="Create Expense"
+  [(visible)]="isPopupVisible"
+  [hideOnOutsideClick]="true"
+
+  >
+  <dxi-toolbar-item
+        widget="dxButton"
+        location="after"
+        [options]="closeButtonOptions">
+    </dxi-toolbar-item>
+     
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)">
+    <dx-form [formData]="formData">
+        
+    <dxi-item
+    dataField="customer_code"
+    editorType="dxSelectBox"
+    [editorOptions]="{ items: Customer_Code, value: '' }"
+  ></dxi-item>
+  
+  <dxi-item
+  dataField="project_code"
+  editorType="dxSelectBox"
+  [editorOptions]="{ items: Project_Code, value: '' }"
+></dxi-item>
+
+      <dxi-item  editorType="dxTextBox" dataField="reason"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'reason', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Reason is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="amount"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Amount', mode: 'number' }">
+      <dxi-validation-rule type="required" message="Cost is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Cost'">
+      </dxo-button-options>
+    </dxi-item>
+
+    </dx-form>
+  </form>  
+  </div>
+</div>
+
+</dx-popup>
 

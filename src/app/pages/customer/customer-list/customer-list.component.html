@@ -53,6 +53,7 @@ mode="row"
     [showBorders]="true"
     (onSelectionChanged)="selectionChanged($event)"
   >
+
   <dxo-header-filter [visible]="true"> </dxo-header-filter>
 
   <dxo-filter-panel [visible]="true"> </dxo-filter-panel>
@@ -64,20 +65,31 @@ mode="row"
   [showPageSizeSelector]="true"
   [showNavigationButtons]="true"
 ></dxo-pager>
+<dxo-editing mode="popup">
+  <dxo-texts confirmDeleteMessage=""></dxo-texts>
+</dxo-editing>
 
     <dxo-selection mode="multiple"></dxo-selection>
 
-    <!-- <dxi-column dataField="_id" caption="ID"></dxi-column> -->
     <dxi-column dataField="customer_code" caption="Customer code"></dxi-column>
     <dxi-column dataField="customer_name"  caption="Customer name" ></dxi-column>
     <dxi-column dataField="contact_no"  caption="Customer contact" ></dxi-column>
     <dxi-column dataField="address"  caption="Customer address" ></dxi-column>
     <dxi-column dataField="created_date" dataType="datetime"  caption="created date"  ></dxi-column>
     <dxi-column dataField="updated_date" dataType="datetime"  caption="updated date"></dxi-column>
-    
+
+
 
     <dxo-toolbar>
-      <dxi-item name="addRowButton" showText="always"> </dxi-item>
+     
+      <!-- name="addRowButton" showText="always" -->
+      <dxi-item location="after"> 
+        <dx-button
+        icon="add"
+    text="Create Customer"
+    (onClick)="togglePopup()">
+</dx-button>
+      </dxi-item>
       <dxi-item location="after">
         <dx-button
           (onClick)="deleteRecords()"
@@ -92,6 +104,52 @@ mode="row"
 
 </div>
 </div>
+<dx-popup
+[showTitle]="true"
+title="Create Customer"
+    [(visible)]="isPopupVisible"
+    [hideOnOutsideClick]="true">
+    <dxi-toolbar-item
+        widget="dxButton"
+        location="after"
+        [options]="closeButtonOptions">
+    </dxi-toolbar-item>
+   
+        
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)">
+    <dx-form [formData]="formData">
+      <dxi-item  editorType="dxTextBox" dataField="customer_code"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer code', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer code is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="customer_name"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer name', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer name is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item editorType="dxTextBox" dataField="address"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Address', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer address is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="contact_no"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Contact no', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Customer contact is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
 
+    <dxi-item itemType="button">
+      <dxo-button-options width="50%" type="default" [useSubmitBehavior]="true" [template]="'Create Customer'">
+      </dxo-button-options>
+    </dxi-item>
+   
+    </dx-form>
+  </form>  
+  </div>
+</div>
+</dx-popup>
 
 

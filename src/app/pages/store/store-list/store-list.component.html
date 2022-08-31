@@ -33,7 +33,14 @@
     
 
     <dxo-toolbar>
-      <dxi-item name="addRowButton" showText="always"> </dxi-item>
+    
+      <dxi-item location="after"> 
+        <dx-button
+        icon="add"
+    text="Create user"
+    (onClick)="togglePopup()">
+</dx-button>
+      </dxi-item>
       <dxi-item location="after">
         <dx-button
           (onClick)="deleteRecords()"
@@ -48,6 +55,57 @@
 
 </div>
 </div>
+<dx-popup 
+  [showTitle]="true"
+  title="Create User"
+  [(visible)]="isPopupVisible"
+  [hideOnOutsideClick]="true"
 
+>
+<dxi-toolbar-item
+widget="dxButton"
+location="after"
+[options]="closeButtonOptions">
+</dxi-toolbar-item>
+
+   
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)">
+    <dx-form [formData]="formData">
+
+        <dxi-item dataField="email" editorType="dxTextBox"
+        [editorOptions]="{ stylingMode: 'filled', placeholder: 'Email', mode: 'email' }">
+        <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+        <dxi-validation-rule type="email" message="Email is invalid"></dxi-validation-rule>
+        <dxo-label [visible]="false"></dxo-label>
+      </dxi-item>
+    <dxi-item  editorType="dxTextBox" dataField="password"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'password' }">
+      <dxi-validation-rule type="required" message="password is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="create_by"
+    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Create by' }">
+    <dxi-validation-rule type="required" message="Create by is required"></dxi-validation-rule>
+    <dxo-label [visible]="false"></dxo-label>
+  </dxi-item> 
+  <dxi-item  editorType="dxTextBox" dataField="update_by"
+  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Update by' }">
+  <dxi-validation-rule type="required" message="Update by is required"></dxi-validation-rule>
+  <dxo-label [visible]="false"></dxo-label>
+</dxi-item> 
+    
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create User'">
+      </dxo-button-options>
+    </dxi-item>
+
+    </dx-form>
+  </form>  
+  </div>
+</div>
+
+</dx-popup>
 
 

@@ -10,56 +10,19 @@ export const navigation = [
     items: [
       {
         text: "Customer",
-
-        items: [
-          {
-            text: "Customer list",
-            path: "/Customer",
-          },
-          {
-            text: "Create Customer",
-            path: "/createCustomer",
-          },
-        ],
+        path: "/Customer",
       },
       {
         text: "Project",
-        items: [
-          {
-            text: "Project list",
-            path: "/Product",
-          },
-          {
-            text: "Create Project",
-            path: "/createProject",
-          },
-        ],
+        path: "/Product",
       },
       {
         text: "User",
-        items: [
-          {
-            text: "User list",
-            path: "/Store",
-          },
-          {
-            text: "Create User",
-            path: "/createUser",
-          },
-        ],
+        path: "/Store",
       },
       {
         text: "Expense",
-        items: [
-          {
-            text: "Expenselist",
-            path: "/Payment",
-          },
-          {
-            text: "Create Expense list",
-            path: "/createCost",
-          },
-        ],
+        path: "/Payment",
       },
     ],
   },

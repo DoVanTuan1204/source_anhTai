@@ -8,7 +8,11 @@ import {
   DxDataGridModule,
   DxFormModule,
   DxButtonModule,
+  DxSpeedDialActionModule,
+  DxPopupModule,
 } from "devextreme-angular";
+import dxSpeedDialAction from "devextreme/ui/speed_dial_action";
+import { DxiItemModule } from "devextreme-angular/ui/nested";
 
 @NgModule({
   declarations: [CustomerListComponent],
@@ -18,6 +22,9 @@ import {
     DxDataGridModule,
     DxFormModule,
     DxButtonModule,
+    DxSpeedDialActionModule,
+    DxPopupModule,
+    DxiItemModule,
   ],
 })
 export class CustomerModule {}

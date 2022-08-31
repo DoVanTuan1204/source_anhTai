@@ -33,6 +33,14 @@
     
 
     <dxo-toolbar>
+      <dxi-item location="after"> 
+        <dx-button
+        icon="add"
+    text="Create Project"
+    (onClick)="togglePopup()">
+</dx-button>
+      </dxi-item>
+
       <dxi-item name="addRowButton" showText="always"> </dxi-item>
       <dxi-item location="after">
         <dx-button
@@ -48,3 +56,60 @@
 
 </div>
 </div>
+
+<dx-popup 
+[showTitle]="true"
+title="Create Project"
+    [(visible)]="isPopupVisible"
+    [hideOnOutsideClick]="true"
+>
+<dxi-toolbar-item
+        widget="dxButton"
+        location="after"
+        [options]="closeButtonOptions">
+    </dxi-toolbar-item>
+     
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form action="post" (submit)="onSubmit($event)"
+    >
+    <dx-form [formData]="formData"
+    [colCount]="2"
+    scrollingEnabled="true"
+   
+    
+>
+      <dxi-item  editorType="dxTextBox" dataField="project_code"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Project code', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Project code is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    <dxi-item  editorType="dxTextBox" dataField="project_name"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Project name', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Project name is required"></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item> 
+    
+   
+  <dxi-item  dataField="from_date"
+      [editorOptions]="{ stylingMode: 'filled', mode: 'date' }">
+    </dxi-item> 
+    <dxi-item
+    dataField="customer_code"
+    editorType="dxSelectBox"
+    [editorOptions]="{ items: Customer_code, value: '' }"
+  ></dxi-item>
+    <dxi-item  dataField="to_date"
+    [editorOptions]="{ stylingMode: 'filled', mode: 'date' }">
+   
+  </dxi-item> 
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Project'">
+      </dxo-button-options>
+    </dxi-item>
+
+    </dx-form>
+  </form>  
+  </div>
+</div>
+</dx-popup>

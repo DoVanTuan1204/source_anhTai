@@ -72,6 +72,7 @@ export function initializeApp(appConfig: AppConfig) {
   declarations: [AppComponent, FilterComponent],
   imports: [
     BrowserModule,
+
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,

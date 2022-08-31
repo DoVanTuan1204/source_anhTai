@@ -57,10 +57,7 @@ export class CreateProductComponent implements OnInit {
           "",
           "success"
         );
-        this._ls.setLocalItem("project_code", project_code);
-        this._ls.setLocalItem("project_name", project_name);
-        this._ls.setLocalItem("from_date", from_date);
-        this._ls.setLocalItem("to_date", to_date);
+
         this.formData = {
           project_code: "",
           project_name: "",

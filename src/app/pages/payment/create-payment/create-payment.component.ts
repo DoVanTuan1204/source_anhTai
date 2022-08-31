@@ -60,10 +60,7 @@ export class CreatePaymentComponent implements OnInit {
           "",
           "success"
         );
-        this._ls.setLocalItem("project_code", project_code);
-        this._ls.setLocalItem("customer_code", customer_code);
-        this._ls.setLocalItem("reason", reason);
-        this._ls.setLocalItem("amount", amount);
+
         this.formData = {
           customer_code: "",
           project_code: "",

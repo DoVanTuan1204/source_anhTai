@@ -5,12 +5,14 @@ import {
   DxDataGridComponent,
   DxDataGridModule,
   DxFormModule,
+  DxPopupModule,
 } from "devextreme-angular";
 import { ProductRoutingModule } from "./product-routing.module";
 import { ProductListComponent } from "./product-list/product-list.component";
 import dxDataGrid from "devextreme/ui/data_grid";
 import { CreateProductComponent } from "./create-product/create-product.component";
 import dxButton from "devextreme/ui/button";
+import { DxiItemModule } from "devextreme-angular/ui/nested";
 
 @NgModule({
   declarations: [ProductListComponent],
@@ -20,6 +22,9 @@ import dxButton from "devextreme/ui/button";
     DxFormModule,
     DxDataGridModule,
     DxButtonModule,
+    DxiItemModule,
+    DxFormModule,
+    DxPopupModule,
   ],
 })
 export class ProductModule {}
