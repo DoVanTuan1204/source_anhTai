@@ -15,8 +15,8 @@ export class PaymentListComponent implements OnInit {
   closeButtonOptions: any;
   public Customer_Code = [];
   public Project_Code = [];
-  public dataExpense: any;
-  public itemExpense: any;
+  public dataExpense: [];
+  public itemExpense: [];
   selectedItemKeys: any[] = [];
 
   constructor(

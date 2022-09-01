@@ -15,11 +15,10 @@ export class ProductListComponent implements OnInit {
   isPopupVisible: boolean;
   createButtonOptions: any;
   closeButtonOptions: any;
-  public dataProject: any;
-  public id_Project: any;
+  public dataProject: [];
   selectedItemKeys: any[] = [];
   public Customer_code = [];
-  private dataCustomer: any;
+  private dataCustomer: [];
 
   constructor(
     private _getProJect: ProudctService,
@@ -49,9 +48,6 @@ export class ProductListComponent implements OnInit {
   }
   callAPI() {
     this._getProJect.getProJect().then((res: any) => {
-      res.data.forEach((item) => {
-        this.id_Project = item._id;
-      });
       this.dataProject = res.data;
     });
   }

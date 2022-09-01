@@ -9,7 +9,7 @@ import { StoreService } from "../store.service";
   styleUrls: ["./store-list.component.scss"],
 })
 export class StoreListComponent implements OnInit {
-  public dataUser: any;
+  public dataUser: [];
   selectedItemKeys: any[] = [];
   isPopupVisible: boolean;
   createButtonOptions: any;
