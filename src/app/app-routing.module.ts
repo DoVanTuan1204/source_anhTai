@@ -41,7 +41,7 @@ export const routes: Routes = [
       },
 
       {
-        path: "Product",
+        path: "Project",
         loadChildren: () =>
           import("./pages/product/product.module").then((m) => m.ProductModule),
         data: { title: "Product", breadcrumb: "Product" },
@@ -69,18 +69,18 @@ export const routes: Routes = [
         data: { title: "CreateUser", breadcrumb: "CreateUser" },
       },
       {
-        path: "Payment",
+        path: "Expense",
         loadChildren: () =>
           import("./pages/payment/payment.module").then((m) => m.PaymentModule),
         data: { title: "Payment", breadcrumb: "Payment" },
       },
       {
-        path: "createCost",
+        path: "createExpense",
         loadChildren: () =>
           import("./pages/payment/create-payment/create-payment.module").then(
             (m) => m.CreatePaymentModule
           ),
-        data: { title: "createPayment", breadcrumb: "createPayment  " },
+        data: { title: "createExpense", breadcrumb: "createExpense  " },
       },
     ],
   },

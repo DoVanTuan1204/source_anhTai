@@ -14,7 +14,7 @@ export const navigation = [
       },
       {
         text: "Project",
-        path: "/Product",
+        path: "/Project",
       },
       {
         text: "User",
@@ -22,7 +22,7 @@ export const navigation = [
       },
       {
         text: "Expense",
-        path: "/Payment",
+        path: "/Expense",
       },
     ],
   },

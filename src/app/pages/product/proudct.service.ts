@@ -20,4 +20,10 @@ export class ProudctService {
   deleteProject(id: Parameter[]): Promise<any> {
     return firstValueFrom(this._reqService.deleteRecord(this.path_project, id));
   }
+
+  getProjectByID(id: any): Promise<any> {
+    return firstValueFrom(
+      this._reqService.getData(this.path_project + "/" + id)
+    );
+  }
 }

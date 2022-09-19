@@ -20,4 +20,9 @@ export class PaymentService {
   deletePayment(id: Parameter[]): Promise<any> {
     return firstValueFrom(this._reqService.deleteRecord(this.path_Expense, id));
   }
+  getExpenseByID(id: any): Promise<any> {
+    return firstValueFrom(
+      this._reqService.getData(this.path_Expense + "/" + id)
+    );
+  }
 }

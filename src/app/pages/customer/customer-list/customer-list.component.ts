@@ -9,8 +9,8 @@ import {
 import { CustomerService } from "../customer.service";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
-import { DxDataGridComponent } from "devextreme-angular";
-import SpeedDialAction from "devextreme/ui/speed_dial_action";
+import { Router } from "@angular/router";
+
 @Component({
   selector: "app-customer-list",
   templateUrl: "./customer-list.component.html",
@@ -26,7 +26,8 @@ export class CustomerListComponent implements OnInit {
   constructor(
     private _getCustomer: CustomerService,
     public _ls: LocalStoreService,
-    private _notiSwal: NotificationSwalService
+    private _notiSwal: NotificationSwalService,
+    private _router: Router
   ) {
     const that = this;
     this.isPopupVisible = false;
@@ -72,7 +73,8 @@ export class CustomerListComponent implements OnInit {
 
   //Hiển thị modal
   togglePopup(): void {
-    this.isPopupVisible = !this.isPopupVisible;
+    //this.isPopupVisible = !this.isPopupVisible;
+    this._router.navigate(["/createCustomer"]);
   }
   //create customer
   formData: any = {
@@ -115,5 +117,11 @@ export class CustomerListComponent implements OnInit {
     });
 
     console.log(params);
+  }
+  //onrow updating
+  updateRow(e) {
+    console.log("hehehehhe", e.data._id);
+    this._router.navigate([`Customer/${e.data._id}`]);
+    this._getCustomer.getCustomerByID(e.data._id);
   }
 }

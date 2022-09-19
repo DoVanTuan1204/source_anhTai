@@ -4,6 +4,7 @@ import { NotificationSwalService } from "src/app/shared/services/notification-sw
 import { PaymentService } from "../payment.service";
 import { CustomerService } from "../../customer/customer.service";
 import { ProudctService } from "../../product/proudct.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-payment-list",
   templateUrl: "./payment-list.component.html",
@@ -24,7 +25,8 @@ export class PaymentListComponent implements OnInit {
     private _getProject: ProudctService,
     private _getExpense: PaymentService,
     public _ls: LocalStoreService,
-    private _notiSwal: NotificationSwalService
+    private _notiSwal: NotificationSwalService,
+    private _router: Router
   ) {
     const that = this;
     this.isPopupVisible = false;
@@ -38,7 +40,7 @@ export class PaymentListComponent implements OnInit {
   ngOnInit(): void {
     this.callAPI();
     this._getCustomer.getCustomer().then((res: any) => {
-      res.data.forEach((customer_code) => {
+      res.data?.forEach((customer_code) => {
         const a = customer_code.customer_code;
         this.Customer_Code.push(a);
       });
@@ -52,12 +54,13 @@ export class PaymentListComponent implements OnInit {
   }
 
   togglePopup(): void {
-    this.isPopupVisible = !this.isPopupVisible;
+    //this.isPopupVisible = !this.isPopupVisible;
+    this._router.navigate(["/createExpense"]);
   }
 
   callAPI() {
     this._getExpense.getExpense().then((res_expense) => {
-      res_expense.data.forEach((item) => {
+      res_expense.data?.forEach((item) => {
         this.itemExpense = item;
       });
       this.dataExpense = res_expense.data;
@@ -124,5 +127,10 @@ export class PaymentListComponent implements OnInit {
         );
       }
     });
+  }
+  updateRow(e) {
+    console.log("hehehehhe", e.data._id);
+    this._router.navigate([`Expense/${e.data._id}`]);
+    this._getExpense.getExpenseByID(e.data._id);
   }
 }

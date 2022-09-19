@@ -1,7 +1,7 @@
-<h2 class="content-block">Create Expense</h2>
+
 <div class="content-block">
   <div class="dx-card responsive-paddings">
-    
+    <h2 class="content-block">{{Create}}</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
     <form action="post" (submit)="onSubmit($event)">
@@ -10,7 +10,7 @@
     <dxi-item
     dataField="customer_code"
     editorType="dxSelectBox"
-    [editorOptions]="{ items: Customer_Code, value: '' }"
+    [editorOptions]="{ items: Customer_Code,value:'{{Customer_Code}}' }"
   ></dxi-item>
   
   <dxi-item
@@ -31,7 +31,7 @@
     </dxi-item> 
     
     <dxi-item itemType="button">
-      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Cost'">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="Detail">
       </dxo-button-options>
     </dxi-item>
 

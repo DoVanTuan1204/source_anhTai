@@ -22,4 +22,9 @@ export class CustomerService {
       this._reqService.deleteRecord(this.path_Customer, id)
     );
   }
+  getCustomerByID(id: any): Promise<any> {
+    return firstValueFrom(
+      this._reqService.getData(this.path_Customer + "/" + id)
+    );
+  }
 }

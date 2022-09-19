@@ -48,12 +48,13 @@ mode="row"
   <div class="dx-card responsive-paddings">
     
   <dx-data-grid  #dataGridVar
-   
+   (onCellDblClick)="updateRow($event)"
     [dataSource]="DataCustomer"
     [showBorders]="true"
     (onSelectionChanged)="selectionChanged($event)"
+    [hoverStateEnabled]="true"
   >
-
+  
   <dxo-header-filter [visible]="true"> </dxo-header-filter>
 
   <dxo-filter-panel [visible]="true"> </dxo-filter-panel>
@@ -104,6 +105,8 @@ mode="row"
 
 </div>
 </div>
+
+
 <dx-popup
 [showTitle]="true"
 title="Create Customer"
@@ -152,4 +155,4 @@ title="Create Customer"
 </div>
 </dx-popup>
 
-
+<!-- <a routerLink="/createCustomer" routerLinkActive="active" ariaCurrentWhenActive="page">Crisis Center</a> -->

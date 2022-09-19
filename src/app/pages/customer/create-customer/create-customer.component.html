@@ -1,10 +1,14 @@
-<h2 class="content-block">Create Customer</h2>
+
+
+<!-- <h2 class="content-block">Create Customer</h2> -->
+
+
 <div class="content-block">
   <div class="dx-card responsive-paddings">
-    
+    <h2 class="content-block">{{a}} </h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
-    <form action="post" (submit)="onSubmit($event)">
+    <form action="post" (submit)="onSubmit($event)" >
     <dx-form [formData]="formData">
       <dxi-item  editorType="dxTextBox" dataField="customer_code"
       [editorOptions]="{ stylingMode: 'filled', placeholder: 'Customer code', mode: 'text' }">
@@ -28,7 +32,11 @@
     </dxi-item> 
 
     <dxi-item itemType="button">
-      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Customer'">
+      <dxo-button-options width="50%" type="default" [useSubmitBehavior]="true" [template]="b">
+      </dxo-button-options>
+    </dxi-item>
+    <dxi-item itemType="button" >
+      <dxo-button-options width="50%"  [template]="'back'" [onClick]="backToCustomer">
       </dxo-button-options>
     </dxi-item>
 
@@ -36,3 +44,4 @@
   </form>  
   </div>
 </div>
+

@@ -1,10 +1,12 @@
 
-<h2 class="content-block">Project List</h2>
+    <h2 class="content-block">Project List</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
-    
+
   <dx-data-grid  #dataGridVar
-   
+  (onCellClick)="updateRow($event)"
+
+  [hoverStateEnabled]="true"
     [dataSource]="dataProject"
     [showBorders]="true"
     (onSelectionChanged)="selectionChanged($event)"

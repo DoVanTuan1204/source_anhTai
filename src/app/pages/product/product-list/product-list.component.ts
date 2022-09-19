@@ -6,6 +6,7 @@ import { CustomerService } from "../../customer/customer.service";
 
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
@@ -18,14 +19,14 @@ export class ProductListComponent implements OnInit {
   public dataProject: [];
   selectedItemKeys: any[] = [];
   public Customer_code = [];
-  private dataCustomer: [];
 
   constructor(
     private _getProJect: ProudctService,
     private _reqSv: RequestService,
     private _notiSwal: NotificationSwalService,
     private _ls: LocalStoreService,
-    private _getCustomer: CustomerService
+    private _getCustomer: CustomerService,
+    private _router: Router
   ) {
     const that = this;
     this.isPopupVisible = false;
@@ -41,14 +42,15 @@ export class ProductListComponent implements OnInit {
     this.callAPI();
     this._getCustomer.getCustomer().then((res: any) => {
       res.data.forEach((code_customer) => {
-        this.dataCustomer = code_customer.customer_code;
-        this.Customer_code.push(this.dataCustomer);
+        const itemCustomer_code = code_customer.customer_code;
+        this.Customer_code.push(itemCustomer_code);
       });
     });
   }
   callAPI() {
     this._getProJect.getProJect().then((res: any) => {
       this.dataProject = res.data;
+      console.log(res);
     });
   }
   selectionChanged(data: any) {
@@ -70,7 +72,8 @@ export class ProductListComponent implements OnInit {
   }
 
   togglePopup(): void {
-    this.isPopupVisible = !this.isPopupVisible;
+    // this.isPopupVisible = !this.isPopupVisible;
+    this._router.navigate(["/createProject"]);
   }
 
   //create Customer
@@ -93,15 +96,10 @@ export class ProductListComponent implements OnInit {
       to_date,
     };
     this._getProJect.createProJect(params).then((res: any) => {
-      console.log("res_create project", params);
       this.callAPI();
 
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
-        this._notiSwal.notificationSwalToast(
-          "Create Project Success",
-          "",
-          "success"
-        );
+        this._notiSwal.notificationSwalToast("Success", "", "success");
 
         this.formData = {
           project_code: "",
@@ -118,5 +116,11 @@ export class ProductListComponent implements OnInit {
         );
       }
     });
+  }
+  // onrow updating
+  updateRow(e) {
+    console.log("hehehehhe", e.data._id);
+    this._router.navigate([`Project/${e.data._id}`]);
+    this._getCustomer.getCustomerByID(e.data._id);
   }
 }

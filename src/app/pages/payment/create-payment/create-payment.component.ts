@@ -4,6 +4,7 @@ import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
 import { CustomerService } from "../../customer/customer.service";
 import { ProudctService } from "../../product/proudct.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-create-payment",
@@ -16,24 +17,65 @@ export class CreatePaymentComponent implements OnInit {
     private _getProject: ProudctService,
     private _ls: LocalStoreService,
     private _notiSwal: NotificationSwalService,
-    private _createPayment: PaymentService
+    private _createPayment: PaymentService,
+    private _getExpense: PaymentService,
+    private _router: Router
   ) {}
   public Customer_Code = [];
   public Project_Code = [];
+  public GetExpenseByID: any;
+  public Create: string;
+  public Detail: string;
   ngOnInit(): void {
-    this._getCustomer.getCustomer().then((res: any) => {
-      res.data.forEach((customer_code) => {
-        const a = customer_code.customer_code;
-        this.Customer_Code.push(a);
+    if (this._router.url == "/createExpense") {
+      this._getCustomer.getCustomer().then((res: any) => {
+        res.data.forEach((customer_code) => {
+          const a = customer_code.customer_code;
+          this.Customer_Code.push(a);
+        });
       });
-    });
-    this._getProject.getProJect().then((res: any) => {
-      res.data.forEach((project_code) => {
-        const b = project_code.project_code;
-        this.Project_Code.push(b);
+      this._getProject.getProJect().then((res: any) => {
+        res.data.forEach((project_code) => {
+          const b = project_code.project_code;
+          this.Project_Code.push(b);
+        });
       });
-    });
+
+      this.Create = "Create Custommer";
+      this.Detail = "Create Custommer";
+    } else {
+      this._getExpense
+        .getExpenseByID(this._router.url.slice(9))
+        .then((res: any) => {
+          this.GetExpenseByID = res.data;
+
+          this.Create = "Detail Custommer";
+          this.Detail = "Update Custommer";
+
+          const a = res.data.customer_code;
+          this.Customer_Code.push(a);
+          const b = res.data.project_code;
+          this.Project_Code.push(b);
+
+          console.log("data _getExpense", this.GetExpenseByID);
+          this.formData = {
+            customer_code: this.Customer_Code,
+            project_code: this.Project_Code,
+            reason: this.GetExpenseByID.reason,
+            amount: this.GetExpenseByID.amount,
+          };
+        });
+
+      console.log("hehe", this.GetExpenseByID);
+    }
+    // this.formData = {
+    //   customer_code: this.GetExpenseByID?.customer_code || "a",
+    //   project_code: this.GetExpenseByID.project_code || "a",
+    //   reason: this.GetExpenseByID.reason || "a",
+    //   amount: this.GetExpenseByID.amount || 0,
+    // };
   }
+  callAPI() {}
 
   //create cost
   formData: any = {

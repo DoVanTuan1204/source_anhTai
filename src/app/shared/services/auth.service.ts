@@ -79,7 +79,7 @@ export class AuthService {
 
       const createAccountPath = "/user";
 
-      firstValueFrom(this._req.createRecord(createAccountPath, params)); // đang dở create account
+      firstValueFrom(this._req.createRecord(createAccountPath, params));
       this.router.navigate(["/create-account"]);
       return {
         isOk: true,

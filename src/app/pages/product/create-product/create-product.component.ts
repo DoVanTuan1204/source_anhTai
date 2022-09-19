@@ -4,6 +4,7 @@ import { ProudctService } from "../proudct.service";
 import { CustomerService } from "../../customer/customer.service";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-create-product",
   templateUrl: "./create-product.component.html",
@@ -14,10 +15,14 @@ export class CreateProductComponent implements OnInit {
     private _getCustomer: CustomerService,
     public _ls: LocalStoreService,
     private _notiSwal: NotificationSwalService,
-    private _createProduct: ProudctService
+    private _createProduct: ProudctService,
+    private _router: Router
   ) {}
   private dataCustomer: any;
   public Customer_code = [];
+  public datetimeField: string;
+  public Create: string;
+  public Detail: string;
 
   ngOnInit(): void {
     this._getCustomer.getCustomer().then((res: any) => {
@@ -26,7 +31,28 @@ export class CreateProductComponent implements OnInit {
         this.Customer_code.push(this.dataCustomer);
       });
     });
-    console.log(this.Customer_code);
+    this._createProduct
+      .getProjectByID(this._router.url.slice(9))
+      .then((res: any) => {
+        console.log("ee", res);
+        if (res._id === "") {
+          this.datetimeField = "date";
+          this.Create = "Create Custommer";
+          this.Detail = "Create Custommer";
+        } else {
+          this.datetimeField = "datetime";
+          this.Create = "Detail Custommer";
+          this.Detail = "Update Custommer";
+        }
+
+        this.formData = {
+          project_code: res.data.project_code,
+          project_name: res.data.project_name,
+          customer_code: res.data.customer_code,
+          from_date: res.data.from_date,
+          to_date: res.data.to_date,
+        };
+      });
   }
 
   //create Customer
@@ -49,8 +75,6 @@ export class CreateProductComponent implements OnInit {
       to_date,
     };
     this._createProduct.createProJect(params).then((res: any) => {
-      console.log("res_create project", params);
-
       if (this._ls.LOCAL_STORAGE_KEY !== "") {
         this._notiSwal.notificationSwalToast(
           "Create Project Success",
