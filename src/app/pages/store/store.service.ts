@@ -19,4 +19,7 @@ export class StoreService {
       this._reqService.createRecord(this.path_User, params)
     );
   }
+  getUserByID(id: any): Promise<any> {
+    return firstValueFrom(this._reqService.getData(this.path_User + "/" + id));
+  }
 }

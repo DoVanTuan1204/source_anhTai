@@ -52,7 +52,6 @@ export class CreatePaymentComponent implements OnInit {
           this.Detail = "Update Expense";
         }
 
-        console.log("data _getExpense", this.GetExpenseByID);
         this.formData = {
           customer_code: res.data.customer_code,
           project_code: res.data.project_code,
@@ -61,8 +60,6 @@ export class CreatePaymentComponent implements OnInit {
         };
       });
   }
-
-  callAPI() {}
 
   //create cost
   formData: any = {

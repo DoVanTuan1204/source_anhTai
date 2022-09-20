@@ -18,7 +18,7 @@ export const navigation = [
       },
       {
         text: "User",
-        path: "/Store",
+        path: "/User",
       },
       {
         text: "Expense",

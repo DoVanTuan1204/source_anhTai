@@ -4,7 +4,8 @@
   <div class="dx-card responsive-paddings">
     
   <dx-data-grid  #dataGridVar
-   
+  (onCellDblClick)="updateRow($event)"
+  [hoverStateEnabled]="true"
     [dataSource]="dataUser"
     [showBorders]="true"
     (onSelectionChanged)="selectionChanged($event)"
@@ -26,7 +27,6 @@
     <!-- <dxi-column dataField="_id" caption="ID"></dxi-column> -->
     <dxi-column dataField="email" caption="Email"></dxi-column>
     <dxi-column dataField="password"  caption="Password" ></dxi-column>
-    <dxi-column dataField="token"  caption="Token" ></dxi-column>
     <dxi-column dataField="created_by"  caption="Created by" ></dxi-column>
     <dxi-column dataField="created_date" dataType="datetime"  caption="created date"  ></dxi-column>
     <dxi-column dataField="updated_date" dataType="datetime"  caption="updated date"></dxi-column>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
 import { StoreService } from "../store.service";
@@ -17,7 +18,8 @@ export class StoreListComponent implements OnInit {
   constructor(
     private _getUser: StoreService,
     public _ls: LocalStoreService,
-    private _notiSwal: NotificationSwalService
+    private _notiSwal: NotificationSwalService,
+    private _router: Router
   ) {
     const that = this;
     this.isPopupVisible = false;
@@ -57,7 +59,8 @@ export class StoreListComponent implements OnInit {
   }
 
   togglePopup(): void {
-    this.isPopupVisible = !this.isPopupVisible;
+    // this.isPopupVisible = !this.isPopupVisible;
+    this._router.navigate(["/createUser"]);
   }
 
   //create user
@@ -104,5 +107,10 @@ export class StoreListComponent implements OnInit {
         "error"
       );
     }
+  }
+  updateRow(e) {
+    console.log("hehehehhe", e.data);
+    this._router.navigate([`User/${e.data.email}`]);
+    this._getUser.getUserByID(e.data.email);
   }
 }

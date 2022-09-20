@@ -1,4 +1,4 @@
-<h2 class="content-block">Create Expense</h2>
+<h2 class="content-block">{{a}}</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
     
@@ -30,7 +30,11 @@
 </dxi-item> 
     
     <dxi-item itemType="button">
-      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create User'">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="b">
+      </dxo-button-options>
+    </dxi-item>
+    <dxi-item itemType="button" >
+      <dxo-button-options width="100%"  [template]="'Back'" [onClick]="backToUser">
       </dxo-button-options>
     </dxi-item>
 

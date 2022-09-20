@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
@@ -13,10 +14,32 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private _craeteUser: StoreService,
     private _ls: LocalStoreService,
-    private _notiSwal: NotificationSwalService
+    private _notiSwal: NotificationSwalService,
+    private _getUserByEmail: StoreService,
+    private _router: Router
   ) {}
+  public a: string;
+  public b: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._getUserByEmail
+      .getUserByID(this._router.url.slice(6))
+      .then((data: any) => {
+        if (data.data.email === "") {
+          this.a = "Create User";
+          this.b = "Create User";
+        } else {
+          this.a = "Detail User";
+          this.b = "Update User";
+        }
+        this.formData = {
+          email: data.data.email,
+          password: data.data.password,
+          created_by: data.data.create_by,
+          update_by: data.data.update_by,
+        };
+      });
+  }
 
   //create cost
   formData: any = {
@@ -36,15 +59,11 @@ export class CreateUserComponent implements OnInit {
     };
     this._craeteUser.createUser(params);
     if (this._ls.LOCAL_STORAGE_KEY !== "") {
-      this._notiSwal.notificationSwalToast(
-        "Create Cost Success",
-        "",
-        "success"
-      );
-      this._ls.setLocalItem("email", email);
-      this._ls.setLocalItem("password", password);
-      this._ls.setLocalItem("create_by", created_by);
-      this._ls.setLocalItem("update_by", update_by);
+      this._notiSwal.notificationSwalToast("Success", "", "success");
+      if (this._router.url === "/createUser") {
+      } else {
+        this._router.navigate(["/User"]);
+      }
       this.formData = {
         email: "",
         password: "",
@@ -59,4 +78,7 @@ export class CreateUserComponent implements OnInit {
       );
     }
   }
+  backToUser = () => {
+    this._router.navigate(["/User"]);
+  };
 }

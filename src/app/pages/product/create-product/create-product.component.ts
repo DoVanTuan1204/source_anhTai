@@ -36,15 +36,13 @@ export class CreateProductComponent implements OnInit {
       .getProjectByID(this._router.url.slice(9))
       .then((res: any) => {
         if (res.data._id === "") {
-          this.Create = "Create Custommer";
-          this.Detail = "Create Custommer";
+          this.Create = "Create Project";
+          this.Detail = "Create Project";
         } else {
           this.datetimeField = "datetime";
-          this.Create = "Detail Custommer";
-          this.Detail = "Update Custommer";
+          this.Create = "Detail Project";
+          this.Detail = "Update Project";
         }
-
-        console.log("date", res.data.to_date);
 
         this.formData = {
           project_code: res.data.project_code,
@@ -85,7 +83,10 @@ export class CreateProductComponent implements OnInit {
           "",
           "success"
         );
-
+        if (this._router.url === "/createProject") {
+        } else {
+          this._router.navigate(["/Project"]);
+        }
         this.formData = {
           project_code: "",
           project_name: "",
