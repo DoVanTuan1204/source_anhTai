@@ -4,7 +4,7 @@
   <div class="dx-card responsive-paddings">
 
   <dx-data-grid  #dataGridVar
-  (onCellClick)="updateRow($event)"
+  (onCellDblClick)="updateRow($event)"
 
   [hoverStateEnabled]="true"
     [dataSource]="dataProject"

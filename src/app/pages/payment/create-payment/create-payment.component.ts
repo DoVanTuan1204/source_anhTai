@@ -27,54 +27,41 @@ export class CreatePaymentComponent implements OnInit {
   public Create: string;
   public Detail: string;
   ngOnInit(): void {
-    if (this._router.url == "/createExpense") {
-      this._getCustomer.getCustomer().then((res: any) => {
-        res.data.forEach((customer_code) => {
-          const a = customer_code.customer_code;
-          this.Customer_Code.push(a);
-        });
+    this._getCustomer.getCustomer().then((res: any) => {
+      res.data.forEach((customer_code) => {
+        const a = customer_code.customer_code;
+        this.Customer_Code.push(a);
       });
-      this._getProject.getProJect().then((res: any) => {
-        res.data.forEach((project_code) => {
-          const b = project_code.project_code;
-          this.Project_Code.push(b);
-        });
+    });
+    this._getProject.getProJect().then((res: any) => {
+      res.data.forEach((project_code) => {
+        const b = project_code.project_code;
+        this.Project_Code.push(b);
       });
+    });
 
-      this.Create = "Create Custommer";
-      this.Detail = "Create Custommer";
-    } else {
-      this._getExpense
-        .getExpenseByID(this._router.url.slice(9))
-        .then((res: any) => {
-          this.GetExpenseByID = res.data;
+    this._getExpense
+      .getExpenseByID(this._router.url.slice(9))
+      .then((res: any) => {
+        this.GetExpenseByID = res.data;
+        if (this.GetExpenseByID._id === "") {
+          this.Create = "Create Expense";
+          this.Detail = "Create Expense";
+        } else {
+          this.Create = "Detail Expense";
+          this.Detail = "Update Expense";
+        }
 
-          this.Create = "Detail Custommer";
-          this.Detail = "Update Custommer";
-
-          const a = res.data.customer_code;
-          this.Customer_Code.push(a);
-          const b = res.data.project_code;
-          this.Project_Code.push(b);
-
-          console.log("data _getExpense", this.GetExpenseByID);
-          this.formData = {
-            customer_code: this.Customer_Code,
-            project_code: this.Project_Code,
-            reason: this.GetExpenseByID.reason,
-            amount: this.GetExpenseByID.amount,
-          };
-        });
-
-      console.log("hehe", this.GetExpenseByID);
-    }
-    // this.formData = {
-    //   customer_code: this.GetExpenseByID?.customer_code || "a",
-    //   project_code: this.GetExpenseByID.project_code || "a",
-    //   reason: this.GetExpenseByID.reason || "a",
-    //   amount: this.GetExpenseByID.amount || 0,
-    // };
+        console.log("data _getExpense", this.GetExpenseByID);
+        this.formData = {
+          customer_code: res.data.customer_code,
+          project_code: res.data.project_code,
+          reason: res.data.reason,
+          amount: res.data.amount,
+        };
+      });
   }
+
   callAPI() {}
 
   //create cost
@@ -103,6 +90,11 @@ export class CreatePaymentComponent implements OnInit {
           "success"
         );
 
+        if (this._router.url === "/createExpense") {
+        } else {
+          this._router.navigate(["/Expense"]);
+        }
+
         this.formData = {
           customer_code: "",
           project_code: "",
@@ -118,4 +110,7 @@ export class CreatePaymentComponent implements OnInit {
       }
     });
   }
+  backToExpense = () => {
+    this._router.navigate(["/Expense"]);
+  };
 }

@@ -5,6 +5,7 @@ import { CustomerService } from "../../customer/customer.service";
 import { LocalStoreService } from "src/app/shared/services/local-store.service";
 import { NotificationSwalService } from "src/app/shared/services/notification-swal.service";
 import { Router } from "@angular/router";
+import { parseDate } from "devextreme/localization";
 @Component({
   selector: "app-create-product",
   templateUrl: "./create-product.component.html",
@@ -34,9 +35,7 @@ export class CreateProductComponent implements OnInit {
     this._createProduct
       .getProjectByID(this._router.url.slice(9))
       .then((res: any) => {
-        console.log("ee", res);
-        if (res._id === "") {
-          this.datetimeField = "date";
+        if (res.data._id === "") {
           this.Create = "Create Custommer";
           this.Detail = "Create Custommer";
         } else {
@@ -45,16 +44,21 @@ export class CreateProductComponent implements OnInit {
           this.Detail = "Update Custommer";
         }
 
+        console.log("date", res.data.to_date);
+
         this.formData = {
           project_code: res.data.project_code,
           project_name: res.data.project_name,
           customer_code: res.data.customer_code,
-          from_date: res.data.from_date,
-          to_date: res.data.to_date,
+          from_date: res.data.from_date.slice(-19, 10),
+          to_date: res.data.to_date.slice(-19, 10),
         };
       });
   }
 
+  backToProject = () => {
+    this._router.navigate(["/Project"]);
+  };
   //create Customer
   formData: any = {
     project_code: "",

@@ -1,4 +1,4 @@
-<h2 class="content-block">Create Project</h2>
+<h2 class="content-block">{{Create}}</h2>
 <div class="content-block">
   <div class="dx-card responsive-paddings">
     
@@ -28,12 +28,16 @@
      
     </dxi-item> 
     <dxi-item  dataField="to_date"
-    [editorOptions]="{ stylingMode: 'filled',mode:'date'}">
+    [editorOptions]="{ stylingMode: 'filled',mode:'date '}">
     
    
   </dxi-item> 
     <dxi-item itemType="button">
-      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'Create Project'">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="Detail">
+      </dxo-button-options>
+    </dxi-item>
+    <dxi-item itemType="button" >
+      <dxo-button-options width="100%"  [template]="'back'" [onClick]="backToProject">
       </dxo-button-options>
     </dxi-item>
 

@@ -69,9 +69,12 @@ export class CreateCustomerComponent implements OnInit {
           customer_code: "",
           customer_name: "",
           address: "",
-          contact_no: 0,
+          contact_no: "",
         };
-        this._router.navigate(["/Customer"]);
+        if (this._router.url === "/createCustomer") {
+        } else {
+          this._router.navigate(["/Customer"]);
+        }
       } else {
         this._notiSwal.notificationSwal("error", "", "error");
       }
